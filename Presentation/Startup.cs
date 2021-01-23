@@ -41,9 +41,6 @@ namespace Presentation
                 .AddEntityFrameworkStores<ApplicationDbContext>() 
                   .AddDefaultTokenProviders();
 
-
-
-
             services.AddControllersWithViews();
             services.AddRazorPages();
 

@@ -19,25 +19,8 @@ namespace ShoppingCart.IOC
     {
         public static void RegisterServices(IServiceCollection services, string connectionString )
         {
-            //when are these instances triggered?
-            //as soon as the application starts?
-            //as soon as the user makes the first call?
-            //as soon as the user makes the second call? and so on so forth
-            //...
-
-            //answer: https://www.tutorialsteacher.com/core/dependency-injection-in-aspnet-core
-
-            /*
-             * 
-             *  Singleton: IoC container will create and share a single instance of a service throughout the application's lifetime.
-                Transient: The IoC container will create a new instance of the specified service (e.g ProductsService) type every time you ask for it.
-                Scoped: IoC container will create an instance of the specified service type once per request and will be shared in a single request.
-             */
-
             services.AddDbContext<ShoppingCartDbContext>(options =>
-              options.UseSqlServer(connectionString
-                 ));
-
+              options.UseSqlServer(connectionString));
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductsService, ProductsService>();
@@ -50,15 +33,12 @@ namespace ShoppingCart.IOC
             services.AddScoped<IMembersService, MembersService>();
 
             services.AddAutoMapper(typeof(AutoMapperConfiguration));
+
             //adds the automapper to the services collection
             AutoMapperConfiguration.RegisterMappings();
             //register the profiles (e.g. DomainToViewProfile)
             //         with any instances of the automapper that will be initialized
 
-
-
         }
-
-
     }
 }
