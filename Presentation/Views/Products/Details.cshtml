@@ -1,0 +1,19 @@
+﻿@model ShoppingCart.Application.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+  
+    @Html.Partial("ProductDetailsPartial", Model) 
+
+
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
