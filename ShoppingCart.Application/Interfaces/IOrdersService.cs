@@ -8,14 +8,13 @@ namespace ShoppingCart.Application.Interfaces
 {
     public interface IOrdersService
     {
-        //void CheckOut(List<Product> productsInCart);
+        IQueryable<OrderViewModel> GetOrders();
+        IQueryable<OrderDetailsViewModel> GetOrdersDetails();
+        OrderViewModel GetOrder(Guid id);
+        OrderDetailsViewModel GetOrderDetails(Guid id);
 
-        IQueryable<ProductViewModel> GetOrders();
+        void AddOrder(OrderViewModel o, OrderDetailsViewModel d);
 
-        ProductViewModel GetOrder(Guid id);
-
-        void AddProductToOrder(ProductViewModel data);
-
-        void DeleteProductFromOrder(Guid id);
+        void DeleteOrder(Guid orderId);
     }
 }
