@@ -21,15 +21,27 @@ namespace ShoppingCart.Data.Repositories {
         
 
         public void DeleteOrder(Guid orderId) {
-            throw new NotImplementedException();
+            var order = GetOrder(orderId);
+            var orderDetails = GetOrderDetails(orderId);
+            _context.Orders.Remove(order);
+            _context.OrdersDetails.Remove(orderDetails);
+            _context.SaveChanges();
         }
 
         public Order GetOrder(Guid id) {
-            throw new NotImplementedException();
+            return _context.Orders.SingleOrDefault(x => x.Id == id);
+        }
+
+        public OrderDetails GetOrderDetails(Guid id) {
+            return _context.OrdersDetails.SingleOrDefault(x => x.OrderFk == id);
         }
 
         public IQueryable<Order> GetOrders() {
-            throw new NotImplementedException();
+            return _context.Orders;
+        }
+
+        public IQueryable<OrderDetails> GetOrdersDetails() {
+            return _context.OrdersDetails;
         }
     }
 }
