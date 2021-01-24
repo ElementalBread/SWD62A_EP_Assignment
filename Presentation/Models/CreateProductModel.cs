@@ -13,8 +13,6 @@ namespace Presentation.Models
 
     }
 
-
-
     public class ListProductModel
     {
         public List<CategoryViewModel> Categories { get; set; }
