@@ -87,7 +87,6 @@ namespace Presentation.Controllers
                     if(file.Length > 0)
                     {
                         string newFilename = Guid.NewGuid() + System.IO.Path.GetExtension(file.FileName);
-                        //C:\Users\Ryan\source\repos\SWD62AEP\SWD62AEP\SWD62AEP\Presentation\wwwroot
                         string absolutePath = _env.WebRootPath + @"\Images\";
 
                         using (var stream = System.IO.File.Create(absolutePath + newFilename))
@@ -107,7 +106,7 @@ namespace Presentation.Controllers
                 ViewData["warning"] = "Product was not added. Check your details";
 
                 //i want to redirect the user to a common page (when there is an error)
-                TempData["error"] = "this is a test error";
+                //TempData["error"] = "this is a test error";
                 return RedirectToAction("Error", "Home");
             }
 
