@@ -90,8 +90,7 @@ namespace Presentation.Areas.Identity.Pages.Account
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password); //this adds a new entry in AspNetUsers
-                if (result.Succeeded)
-                {
+                if (result.Succeeded){
 
                      await _userManager.AddToRoleAsync(user, "User");
 

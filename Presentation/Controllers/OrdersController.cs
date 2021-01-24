@@ -2,12 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingCart.Application.Interfaces;
+using ShoppingCart.Application.Services;
+using ShoppingCart.Application.ViewModels;
 
 namespace Presentation.Controllers
 {
-    public class OrdersController : Controller
-    {
+    public class OrdersController : Controller{
+        private IOrdersService _ordersService;
+        private IWebHostEnvironment _env;
+        public OrdersController(IOrdersService ordersService, IWebHostEnvironment env) {
+            _ordersService = ordersService;
+            _env = env;
+        }
+        public IActionResult Index() {
+            //var list;//_ordersService.GetOrders();
+
+            //return View(list);
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Checkout()
         {

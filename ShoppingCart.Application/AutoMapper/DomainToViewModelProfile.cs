@@ -16,7 +16,7 @@ namespace ShoppingCart.Application.AutoMapper
             CreateMap<Product, ProductViewModel>();
             //if they were called differently
             //CreateMap<Product, ProductViewModel>().ForMember(dest=>dest.Description, src=>src.MapFrom(x=>x.Description)); 
-
+            CreateMap<Order, OrderViewModel>();
             CreateMap<Category, CategoryViewModel>();
             CreateMap<Member, MemberViewModel>();
         }

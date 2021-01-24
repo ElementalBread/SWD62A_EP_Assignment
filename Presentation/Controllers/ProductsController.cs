@@ -48,7 +48,6 @@ namespace Presentation.Controllers
             var myProduct = _productsService.GetProduct(id);
 
             return View(myProduct);
-
         }
 
         [HttpGet] //the get method which will load the page with blank fields

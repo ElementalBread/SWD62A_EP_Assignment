@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCart.Data.Context;
 
 namespace ShoppingCart.Data.Migrations
 {
     [DbContext(typeof(ShoppingCartDbContext))]
-    partial class ShoppingCartDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210124173138_CreatingOrdersTable")]
+    partial class CreatingOrdersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,46 +63,12 @@ namespace ShoppingCart.Data.Migrations
                     b.Property<DateTime>("DatePlaced")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MemberEmail")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ShoppingCart.Domain.Models.OrderDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("OrderFk")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("ProductFk")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrdersDetails");
                 });
 
             modelBuilder.Entity("ShoppingCart.Domain.Models.Product", b =>
@@ -132,17 +100,6 @@ namespace ShoppingCart.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("ShoppingCart.Domain.Models.OrderDetails", b =>
-                {
-                    b.HasOne("ShoppingCart.Domain.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("ShoppingCart.Domain.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("ShoppingCart.Domain.Models.Product", b =>
