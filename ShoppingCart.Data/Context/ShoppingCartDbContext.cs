@@ -25,6 +25,7 @@ namespace ShoppingCart.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Order>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){

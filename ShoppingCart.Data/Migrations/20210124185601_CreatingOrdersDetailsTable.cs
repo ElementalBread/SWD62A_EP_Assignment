@@ -20,7 +20,7 @@ namespace ShoppingCart.Data.Migrations
                 name: "OrdersDetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<Guid>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductFk = table.Column<Guid>(nullable: false),
                     ProductId = table.Column<Guid>(nullable: true),

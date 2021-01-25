@@ -10,8 +10,8 @@ using ShoppingCart.Data.Context;
 namespace ShoppingCart.Data.Migrations
 {
     [DbContext(typeof(ShoppingCartDbContext))]
-    [Migration("20210124185828_UpdateOrdersTable")]
-    partial class UpdateOrdersTable
+    [Migration("20210125013548_edited tables")]
+    partial class editedtables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,10 +73,10 @@ namespace ShoppingCart.Data.Migrations
 
             modelBuilder.Entity("ShoppingCart.Domain.Models.OrderDetails", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<Guid>("OrderFk")
                         .HasColumnType("uniqueidentifier");

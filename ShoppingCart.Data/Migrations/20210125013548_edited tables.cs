@@ -2,7 +2,7 @@
 
 namespace ShoppingCart.Data.Migrations
 {
-    public partial class UpdateOrdersTable : Migration
+    public partial class editedtables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
