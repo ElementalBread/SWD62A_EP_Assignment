@@ -15,8 +15,11 @@ namespace ShoppingCart.Application.Interfaces
         //unwanted information
         //typical eg. if you have User class, would you pass on the password? Answer no. So that's why we create, 
         //these ViewModels.
+
+        //To understand the role of ViewModel(s) better, think of Views in a relational database
         IQueryable<ProductViewModel> GetProducts();
 
+        // void RateProduct(Guid id, string comment, double rating);
 
         ProductViewModel GetProduct(Guid id);
 

@@ -10,7 +10,7 @@ using System.Linq;
 using AutoMapper.QueryableExtensions;
 
 namespace ShoppingCart.Application.Services {
-    public class OrdersService : IOrdersService{
+    class OrdersService : IOrdersService{
 
         private IOrdersRepository _ordersRepo;
         private IMapper _mapper;
@@ -19,36 +19,27 @@ namespace ShoppingCart.Application.Services {
             _mapper = mapper;
         }
 
-        public void AddOrder(OrderViewModel o, OrderDetailsViewModel d) {
-            var order = _mapper.Map<Order>(o);
-            var details = _mapper.Map<OrderDetails>(d);
-            _ordersRepo.AddOrder(order,details);
+        public void AddProductToOrder(ProductViewModel data) {
+            throw new NotImplementedException();
         }
 
-        public void DeleteOrder(Guid orderId) {
-            if (_ordersRepo.GetOrder(orderId) != null)
-                _ordersRepo.DeleteOrder(orderId);
+
+        public void DeleteProductFromOrder(Guid id) {
+            throw new NotImplementedException();
         }
 
-        public OrderViewModel GetOrder(Guid id) {
-            Order order = _ordersRepo.GetOrder(id);
-            var result = _mapper.Map<OrderViewModel>(order);
-            return result;
-        }
-
-        public OrderDetailsViewModel GetOrderDetails(Guid id) {
-            OrderDetails orderDetails = _ordersRepo.GetOrderDetails(id);
-            var result = _mapper.Map<OrderDetailsViewModel>(orderDetails);
-            return result;
+        public ProductViewModel GetOrder(Guid id) {
+            throw new NotImplementedException();
         }
 
         public IQueryable<OrderViewModel> GetOrders() {
+            //ProjectTo is a way how to map from one type to the other however ONLY when you have a Queryable datatype
             return _ordersRepo.GetOrders().ProjectTo<OrderViewModel>(_mapper.ConfigurationProvider);
 
         }
 
-        public IQueryable<OrderDetailsViewModel> GetOrdersDetails() {
-            return _ordersRepo.GetOrdersDetails().ProjectTo<OrderDetailsViewModel>(_mapper.ConfigurationProvider);
+        IQueryable<ProductViewModel> IOrdersService.GetOrders() {
+            throw new NotImplementedException();
         }
     }
 }

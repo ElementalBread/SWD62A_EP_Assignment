@@ -99,13 +99,11 @@ namespace Presentation.Controllers
                 ViewData["feedback"] = "Product was added successfully";
                 ModelState.Clear();
             }
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
             catch (Exception ex)
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
             {
                 //log errors
                 ViewData["warning"] = "Product was not added. Check your details";
-                
+
                 //i want to redirect the user to a common page (when there is an error)
                 //TempData["error"] = "this is a test error";
                 return RedirectToAction("Error", "Home");

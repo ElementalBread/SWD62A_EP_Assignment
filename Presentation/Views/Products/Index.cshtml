@@ -16,13 +16,7 @@
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text">€@product.Price</p>
                             <a href="/Products/Details?id=@product.Id" class="btn btn-primary">View Specifications</a>
-                            @if (User.Identity.IsAuthenticated) {
-                                <a href="/Orders/addOrder?id=@product.Id"class="btn btn-success">Add to cart</a>
-                                if (User.IsInRole("Admin")) {
-                                    <a href="/Products/Delete?id=@product.Id" onclick="return window.confirm('Are you sure?')" class="btn btn-danger">Delete</a>
-                                }
-                            }
-
+                            <a href="/Products/Delete?id=@product.Id" onclick="return window.confirm('Are you sure?')" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
