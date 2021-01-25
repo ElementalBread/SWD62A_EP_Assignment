@@ -13,6 +13,6 @@ namespace ShoppingCart.Domain.Interfaces {
 
         void AddOrder(Order o, OrderDetails d);
 
-        void DeleteOrder(Guid orderId);
+        void DeleteOrder(Guid orderId, Guid orderDetailId);
     }
 }

@@ -25,9 +25,9 @@ namespace ShoppingCart.Application.Services {
             _ordersRepo.AddOrder(order,details);
         }
 
-        public void DeleteOrder(Guid orderId) {
+        public void DeleteOrder(Guid orderId, Guid orderDetailId) {
             if (_ordersRepo.GetOrder(orderId) != null)
-                _ordersRepo.DeleteOrder(orderId);
+                _ordersRepo.DeleteOrder(orderId, orderDetailId);
         }
 
         public OrderViewModel GetOrder(Guid id) {

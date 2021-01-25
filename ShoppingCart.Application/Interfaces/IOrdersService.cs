@@ -15,6 +15,6 @@ namespace ShoppingCart.Application.Interfaces
 
         void AddOrder(OrderViewModel o, OrderDetailsViewModel d);
 
-        void DeleteOrder(Guid orderId);
+        void DeleteOrder(Guid orderId, Guid orderDetailId);
     }
 }

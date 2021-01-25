@@ -20,9 +20,9 @@ namespace ShoppingCart.Data.Repositories {
         }
         
 
-        public void DeleteOrder(Guid orderId) {
+        public void DeleteOrder(Guid orderId, Guid orderDetailsId) {
             var order = GetOrder(orderId);
-            var orderDetails = GetOrderDetails(orderId);
+            var orderDetails = GetOrderDetails(orderDetailsId);
             _context.Orders.Remove(order);
             _context.OrdersDetails.Remove(orderDetails);
             _context.SaveChanges();

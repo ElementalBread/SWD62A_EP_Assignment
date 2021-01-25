@@ -6,23 +6,14 @@
 <h1>Cart</h1>
 <ul>
     @foreach (var order in Model.Orders) {
-        @if (order.MemberEmail == User.Identity.Name) {
-            @foreach (var orderDetail in Model.OrdersDetails) {
-                if (order.Id == orderDetail.OrderId) {
-                    <li>
-                        <h5>Placed on: @order.DatePlaced</h5>
-                        @foreach (var product in Model.Products) {
-                            if (product.Id == orderDetail.OrderId) {
-                                <p>Name: @product.Name</p>
-                            }
-                        }
-                        <p>Price: €(@Model.OrdersDetails.Price*@Model.OrdersDetails.Quantity)</p>
-                        <p>Quantity: @Model.OrdersDetails.Quantity</p>
-                    </li>
-                }
-            }
+        @if(order.MemberEmail == User.Identity.Name) {
+            <li>
+            <h5>@order.Id</h5>
+            <p>@order.DatePlaced</p>
+        </li>
         }
     }
+
 </ul>
 
 <a href="/Orders/Checkout" class="btn btn-success" role="button">Confirm Purchase</a>

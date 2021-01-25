@@ -25,8 +25,18 @@ namespace Presentation.Controllers
         public IActionResult Index() {
             dynamic model = new ExpandoObject();
             model.Products = _productsService.GetProducts();
-            model.Orders = _ordersService.GetOrders();
-            model.OrdersDetails = _ordersService.GetOrdersDetails();
+            var Orders = _ordersService.GetOrders();
+            var OrdersDetails = _ordersService.GetOrdersDetails();
+
+
+            /*var orders = Orders.AsQueryable().Join(OrdersDetails,
+                   Orders => Orders.Id,
+                   OrdersDetails => OrdersDetails.OrderFk,
+                   (order, orderDetail) =>
+                       new { Date = order.DatePlaced, Price = orderDetail.Price, Quantity = orderDetail.Quantity });*/
+
+            model.Orders = Orders;
+            model.OrdersDetails = OrdersDetails;
             return View(model);
         }
        
@@ -51,33 +61,44 @@ namespace Presentation.Controllers
                 TempData["feedback"] = "Order was added successfully";
                 ModelState.Clear();
             } catch {
-                TempData["warning"] = "Product was not added. Check your details";
+                TempData["warning"] = "Order was not added. Check your details";
                 return RedirectToAction("Error", "Home");
             }
 
             return RedirectToAction("Index", "Products");
         }
+
         [HttpPost]
         public IActionResult Checkout()
         {
-
+            var Orders = _ordersService.GetOrders();
+            var OrdersDetails = _ordersService.GetOrdersDetails();
             string emailOfTheUserWhoIsLoggedIn = User.Identity.Name;
 
+            foreach(var order in Orders) {
+                if(order.MemberEmail == User.Identity.Name) {
+                    foreach(var orderDetail in OrdersDetails) {
+                        if(orderDetail.OrderFk == order.Id) {
+                            deleteOrder(order.Id, orderDetail.OrderFk);
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Products");
+        }
 
-            //1. get a list of products inside the ShoppingCart table belonging to the logged in user
+        public IActionResult deleteOrder(Guid id, Guid orderDetailId) {
 
-            //2. create an order
+            try {
+                _ordersService.DeleteOrder(id, orderDetailId);
+                TempData["feedback"] = "Order was added successfully";
+                ModelState.Clear();
+            } catch {
+                TempData["warning"] = "Order was not deleted. Check your details";
+                return RedirectToAction("Error", "Home");
+            }
 
-            //3. loop inside the list brought from (1)
-                 //for every product
-                  // 3.1 check first the stock
-                  // 3.2 deduct qty from stock
-                  // 3.3 insert an order detail
-
-
-            //4. remove items from the ShoppingCart table for the logged in user
-
-            return View();
+            return RedirectToAction("Index", "Products");
         }
     }
 }
